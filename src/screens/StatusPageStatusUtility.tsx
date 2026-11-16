@@ -8,21 +8,27 @@
 // 4. Replace placeholder data with props/state
 
 
+import type { ApplicationStatusValue } from "../features/prod-status-utility/prod-status-utility.types";
+
 export type StatusPageStatusUtilityActionId = "refresh-status-1";
 
 export interface StatusPageStatusUtilityProps {
   actions?: {
     "refresh-status-1"?: () => void;
   };
+  status?: ApplicationStatusValue;
+  route?: string;
 
 }
 
 export type StatusPageStatusUtilityActionCallbacks = NonNullable<StatusPageStatusUtilityProps["actions"]>;
 
-export function StatusPageStatusUtility({ actions }: StatusPageStatusUtilityProps) {
+export function StatusPageStatusUtility({ actions, status, route }: StatusPageStatusUtilityProps) {
+  const statusValue: ApplicationStatusValue = status === "refreshed" ? "refreshed" : "idle";
+  const isRefreshed = statusValue === "refreshed";
   return (
     <>
-      <div className="flex-1 flex flex-col justify-between" data-surface-id="SURF_STATUS_PAGE" data-setfarm-element-ref="E000001" data-observable-refs="OBS_REFRESH_STATUS_STATUS_ROUTE_VIEW">
+      <div className="flex-1 flex flex-col justify-between" data-surface-id="SURF_STATUS_PAGE" data-setfarm-element-ref="E000001" data-observable-refs="OBS_REFRESH_STATUS_STATUS_ROUTE_VIEW" data-route={route ?? "/status"}>
           {/* Non-interactive Decorative Top App Bar */}
           <header className="border-b border-slate-800 bg-slate-950/60 backdrop-blur px-8 py-4">
             <div className="max-w-5xl mx-auto flex items-center justify-between">
@@ -82,7 +88,7 @@ export function StatusPageStatusUtility({ actions }: StatusPageStatusUtilityProp
               </div>
       
               {/* Right Surface: SURF_STATUS_PANEL */}
-              <div className="lg:col-span-7 bg-slate-800/80 border border-slate-700 rounded-2xl p-8 shadow-2xl space-y-6" data-surface-id="SURF_STATUS_PANEL" data-setfarm-element-ref="E000003" data-observable-refs="OBS_REFRESH_STATUS_STATUS_VALUE">
+              <div className="lg:col-span-7 bg-slate-800/80 border border-slate-700 rounded-2xl p-8 shadow-2xl space-y-6" data-surface-id="SURF_STATUS_PANEL" data-setfarm-element-ref="E000003" data-observable-refs="OBS_REFRESH_STATUS_STATUS_VALUE" data-value={statusValue}>
                 <div className="flex items-center justify-between border-b border-slate-700/80 pb-4">
                   <div>
                     <h2 className="text-lg font-semibold text-white">Status Panel</h2>
@@ -99,7 +105,7 @@ export function StatusPageStatusUtility({ actions }: StatusPageStatusUtilityProp
                     <span className="text-xs uppercase tracking-wider text-slate-400 font-medium">Current Status</span>
                     <div className="text-xl font-mono font-semibold text-slate-100 flex items-center space-x-2">
                       <span className="w-2.5 h-2.5 rounded-full bg-slate-400"></span>
-                      <span>idle</span>
+                      <span>{statusValue}</span>
                     </div>
                   </div>
                   <div className="p-4 bg-slate-900/70 border border-slate-800 rounded-xl space-y-1">
@@ -114,11 +120,13 @@ export function StatusPageStatusUtility({ actions }: StatusPageStatusUtilityProp
                 <div className="p-4 bg-slate-900/50 border border-slate-800/90 rounded-xl space-y-2">
                   <div className="text-xs font-semibold text-slate-300">System Notification</div>
                   <div className="text-sm text-slate-400">
-                    Status monitor is standing by in an idle state.
+                    {isRefreshed
+                      ? "Status refresh cycle completed and persisted."
+                      : "Status monitor is standing by in an idle state."}
                   </div>
                   {/* Accessible status announcement element representing OBS_REFRESH_STATUS_STATUS_TEXT */}
                   <div className="text-xs text-indigo-400 font-medium pt-1" data-setfarm-element-ref="E000004" role="status" aria-label="Status refreshed" data-observable-refs="OBS_REFRESH_STATUS_STATUS_TEXT">
-                    Status refreshed
+                    {isRefreshed ? "Status refreshed" : "Status idle"}
                   </div>
                 </div>
       
