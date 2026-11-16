@@ -1,0 +1,106 @@
+{
+  "generatedAt": "2026-11-16T23:38:02.867Z",
+  "screenCount": 1,
+  "screens": {
+    "b207e66ffece4b27a771998e9c6bfb60": {
+      "screenId": "b207e66ffece4b27a771998e9c6bfb60",
+      "materialSymbolsRequired": false,
+      "sections": [
+        {
+          "tag": "header",
+          "layout": "block",
+          "classes": [
+            "border-b",
+            "border-slate-800",
+            "bg-slate-950/60",
+            "backdrop-blur",
+            "px-8",
+            "py-4"
+          ],
+          "childCount": 5
+        },
+        {
+          "tag": "main",
+          "layout": "flex-col",
+          "classes": [
+            "max-w-5xl",
+            "mx-auto",
+            "w-full",
+            "px-8",
+            "py-12",
+            "flex-1",
+            "flex",
+            "flex-col",
+            "justify-center"
+          ],
+          "childCount": 24
+        },
+        {
+          "tag": "footer",
+          "layout": "block",
+          "classes": [
+            "border-t",
+            "border-slate-800/80",
+            "bg-slate-950/40",
+            "px-8",
+            "py-4"
+          ],
+          "childCount": 1
+        }
+      ],
+      "buttons": [
+        {
+          "kind": "button",
+          "label": "Refresh Status",
+          "classes": [
+            "w-full",
+            "inline-flex",
+            "items-center",
+            "justify-center",
+            "px-5",
+            "py-3",
+            "rounded-xl",
+            "text-sm",
+            "font-semibold",
+            "text-white",
+            "bg-indigo-600",
+            "hover:bg-indigo-500",
+            "shadow-lg",
+            "shadow-indigo-600/25",
+            "border",
+            "border-indigo-500",
+            "transition-colors",
+            "cursor-pointer"
+          ],
+          "icon": null,
+          "action": "click-action",
+          "expectedBehavior": "produce visible DOM/state/URL feedback; never empty onClick"
+        }
+      ],
+      "inputs": [],
+      "navLinks": [],
+      "cards": [],
+      "icons": [],
+      "images": [],
+      "cssVars": {},
+      "colorPalette": {},
+      "fonts": [],
+      "layoutHints": {
+        "gridCols": 1,
+        "flexDirection": "col",
+        "gap": "8"
+      },
+      "behaviorContract": [
+        {
+          "kind": "button",
+          "label": "Refresh Status",
+          "icon": null,
+          "action": "click-action",
+          "expectedBehavior": "produce visible DOM/state/URL feedback; never empty onClick"
+        }
+      ],
+      "tabBar": [],
+      "title": "Status Page - Status Utility"
+    }
+  }
+}
